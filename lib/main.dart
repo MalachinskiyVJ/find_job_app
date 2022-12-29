@@ -1,4 +1,5 @@
 import 'package:find_job/bloc/add_company_bloc/add_company_bloc.dart';
+import 'package:find_job/bloc/add_job_bloc/add_job_bloc.dart';
 import 'package:find_job/bloc/companies_bloc/companies_bloc.dart';
 import 'package:find_job/bloc/jobs_bloc/jobs_bloc.dart';
 import 'package:find_job/repositories/companies/companies_repository.dart';
@@ -52,6 +53,10 @@ class MyApp extends StatelessWidget {
               BlocProvider(
                 create: (context) => AddCompanyBloc(
                     companiesRepository: context.read<CompaniesRepository>()),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    AddJobBloc(jobsRepository: context.read<JobsRepository>()),
               ),
             ],
             child: MaterialApp(

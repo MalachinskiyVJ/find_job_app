@@ -1,12 +1,12 @@
-import 'package:find_job/bloc/add_company_bloc/add_company_bloc.dart';
+import 'package:find_job/bloc/add_job_bloc/add_job_bloc.dart';
 import 'package:find_job/ui/screens/tabs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AddCompanyResultScreen extends StatelessWidget {
-  const AddCompanyResultScreen({Key? key}) : super(key: key);
+class AddJobResultScreen extends StatelessWidget {
+  const AddJobResultScreen({Key? key}) : super(key: key);
 
-  static const id = 'add_company_result_screen';
+  static const id = 'add_job_result_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +16,16 @@ class AddCompanyResultScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlocBuilder<AddCompanyBloc, AddCompanyState>(
+          BlocBuilder<AddJobBloc, AddJobState>(
             builder: (context, state) {
-              if (state is AddCompanyLoading) {
+              if (state is AddJobLoading) {
                 return const CircularProgressIndicator(
                     color: Colors.lightBlueAccent);
-              } else if (state is AddCompanySuccess) {
+              } else if (state is AddJobSuccess) {
                 return Column(
                   children: [
                     Image.asset('assets/done.png'),
-                    const Text("Компанія створена успішно",
+                    const Text("Вакансія створена успішно",
                         style: TextStyle(fontSize: 20)),
                   ],
                 );

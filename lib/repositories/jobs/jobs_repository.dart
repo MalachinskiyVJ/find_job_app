@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:find_job/models/add_job_req_model.dart';
+import 'package:find_job/models/add_job_resp_model.dart';
 import 'package:find_job/models/jobs_resp_model.dart';
 import 'package:find_job/repositories/jobs/base_jobs_repository.dart';
 
@@ -38,5 +40,17 @@ class JobsRepository implements BaseJobsRepository {
       return companiesRespsonse.job;
     }
     return [];
+  }
+
+  @override
+  Future<void> addJob(AddJobRequest addJobRequest) async {
+    var uri = Uri.http(url, jobsPath);
+    final dio = Dio();
+    dio.interceptors.add(LogInterceptor(
+        responseHeader: false, responseBody: true, requestBody: true));
+    var response = await dio.postUri(uri, data: addJobRequest);
+    if (response.statusCode == 200) {
+      AddJobResponse addJobRespsonse = AddJobResponse.fromJson(response.data);
+    }
   }
 }
